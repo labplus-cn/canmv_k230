@@ -37,3 +37,27 @@ linux下直接使用dd命令进行烧录，windows下使用烧录工具进行烧
 网址:[www.canaan-creative.com](https://www.canaan-creative.com/)
 
 商务垂询:[salesAI@canaan-creative.com](salesAI@canaan-creative.com)
+
+##　for labplus
+
+项目以repo方式管理，wwww.github.com/labplus-cn/创建canmv_k230_manifest仓库管理项目repo.
+
+需要二次开发的仓库：canmv_k230 和 lvgl
+
+从https://github.com/kendryte/canmv_k230.git fork 到www.github.com/labplus-cn做二次开发。
+
+lvgl fork到wwww.github.com/labplus-cn，按需配置并加入字体。
+
+两个仓库可单独通git操作创建分支、推送等操作。
+
+项目拉取：
+
+1. 参照BUILD.md，创建开发环境及编译。
+2. 拉取项目到本地（项目仓库以repo方式管理）
+   mkdir -p canmv_k230
+   cd canmv_k230
+   repo init -u https://github.com/labplus-cn/canmv_k230_manifest -b master --repo-url=https://github.com/canmv-k230/git-repo.git
+   repo sync 
+
+    注意，第一次repo sync拉取的是manifest里定义的各仓库的默认分支，且处理游离状态，需要对二次开发的仓库创建并切换到新的分支
+   git checkout -b labplus dev/labplus_canmv
