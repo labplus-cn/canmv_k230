@@ -81,10 +81,6 @@ https://github.com/labplus-cn/lvgl.git
    git pull labplus labplus_canmv 
    git checkout labplus_canmv
    ```
-   说明：第一次repo sync拉取的是manifest里定义的各仓库的默认分支，且处理游离状态，需要执行上述操作拉取二次开发的仓库并切换到新的分支。
-
-   ```
-   git checkout labplus dev/labplus_canmv
-   ```
-
+   说明：第一次repo sync拉取的是manifest里定义的各仓库的默认分支，且处于游离状态，需要执行上述操作拉取二次开发的仓库并切换到新的分支。
+   
    也可以对某一仓库创建新分支开发。跟单独仓库的git操作一样。但repo项目时，一定要切换到开发仓库。
