@@ -40,29 +40,48 @@ linux下直接使用dd命令进行烧录，windows下使用烧录工具进行烧
 
 ## for labplus
 
-项目以repo方式管理，wwww.github.com/labplus-cn/创建canmv_k230_manifest仓库管理项目repo.
+二次开发需要修改一些仓库，从官网fork以下仓库到公司官网：
 
-需要二次开发的仓库：canmv_k230 和 lvgl
+https://github.com/labplus-cn/canmv_k230.git
 
-从<https://github.com/kendryte/canmv_k230.git> fork 到www.github.com/labplus-cn做二次开发。
+https://github.com/labplus-cn/canmv.git
 
-lvgl fork到wwww.github.com/labplus-cn，按需配置并加入字体。
-
-两个仓库可单独通git操作创建分支、推送等操作。
+https://github.com/labplus-cn/lvgl.git
 
 项目拉取：
 
 1. 参照BUILD.md，创建开发环境及编译。
-2. 拉取项目到本地（项目仓库以repo方式管理）
+2. 从官方拉取项目到本地（项目仓库以repo方式管理）
 
    ```bash
    mkdir -p canmv_k230
    cd canmv_k230
-   repo init -u https://github.com/labplus-cn/canmv_k230_manifest -b master --repo-url=https://github.com/canmv-k230/git-repo.git
+   repo init -u https://github.com/canmv-k230/manifest -b master --repo-url=https://github.com/canmv-k230/git-repo.git
    repo sync 
+   repo star labplus_canmv --all # 本地创建分支做二次开发
    ```
+3. 二次开发仓库添加公司远程
+   
+   ```bash
+   # 拉取本地canmv_k230仓库
+   cd canmv_k230
+   git remote add labplus https://github.com/labplus-cn/canmv_k230.git
+   git pull labplus labplus_canmv # 从公司仓库拉取本仓库开发分支
+   git checkout labplus_canmv
 
-    注意，第一次repo sync拉取的是manifest里定义的各仓库的默认分支，且处理游离状态，需要对二次开发的仓库创建并切换到新的分支
+   # 拉取本地canmv仓库
+   cd canmv_k230/src/canmv
+   git remote add labplus https://github.com/labplus-cn/canmv.git
+   git pull labplus labplus_canmv 
+   git checkout labplus_canmv
+
+   # 拉取本地lvgl仓库
+   cd ccanmv_k230/src/canmv/port/3rd-party/lv_bindings/lvgl
+   git remote add labplus https://github.com/labplus-cn/lvgl.git
+   git pull labplus labplus_canmv 
+   git checkout labplus_canmv
+   ```
+   说明：第一次repo sync拉取的是manifest里定义的各仓库的默认分支，且处理游离状态，需要执行上述操作拉取二次开发的仓库并切换到新的分支。
 
    ```
    git checkout labplus dev/labplus_canmv
